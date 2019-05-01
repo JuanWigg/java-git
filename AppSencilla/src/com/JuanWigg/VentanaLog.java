@@ -3,6 +3,7 @@ package com.JuanWigg;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class VentanaLog extends JFrame{
@@ -25,15 +26,15 @@ public class VentanaLog extends JFrame{
         setTitle("WiggenSoft");
         
         panel = new JPanel();
-        
-        panel.setBackground(Color.blue);
         panel.setLayout(null);
+        
         getContentPane().add(panel);
         configLabels();
         
         configTextFields();
         configBotones();
         
+        panel.setBackground(Color.blue);
         
         
     }
@@ -84,6 +85,46 @@ public class VentanaLog extends JFrame{
         
         panel.add(botonLogin);
         panel.add(botonRegis);
+        
+        actionHandler o = new actionHandler();
+        
+        botonLogin.addActionListener(o);
+        botonRegis.addActionListener(o);
+        
+    }
+    
+    
+    private class actionHandler implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            Object src = ae.getSource();
+            
+            
+            
+            if(src == botonLogin){
+                String user = "Juan123";
+                String pass = "Eskere123";
+                
+                String usertxt = text_user.getText();
+                String passtxt = text_pass.getText();
+                
+                if(user.equals(usertxt) && pass.equals(passtxt))
+                    JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso","Felicidades",JOptionPane.INFORMATION_MESSAGE);
+                else
+                    JOptionPane.showMessageDialog(null,"Datos de inicio incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
+                
+                
+                
+            }
+            else{
+                
+                
+                
+            }
+            
+        }
+        
         
     }
     
