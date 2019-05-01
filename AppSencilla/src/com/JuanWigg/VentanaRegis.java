@@ -37,7 +37,7 @@ public class VentanaRegis extends JFrame {
     
     
     private void configLabels(){
-        
+        //XD
         
     }
     
