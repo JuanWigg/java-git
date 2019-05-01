@@ -2,6 +2,8 @@
 package com.JuanWigg;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 
@@ -91,9 +93,22 @@ public class VentanaRegis extends JFrame {
         botonRegis.setBounds(300,550,200,100);
         botonCancel.setBounds(75,550,200,100);
         
+        actionHandler o = new actionHandler();
+        
+        botonRegis.addActionListener(o);
+        botonCancel.addActionListener(o);
         
         panel.add(botonRegis);
         panel.add(botonCancel);
+    }
+    
+    private class actionHandler implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            System.out.println("ACCION DETECTADA");
+        }
+        
     }
     
 }
