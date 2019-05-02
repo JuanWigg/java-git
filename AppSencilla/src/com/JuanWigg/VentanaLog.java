@@ -118,7 +118,8 @@ public class VentanaLog extends JFrame{
                 
             }
             else{
-                
+                VentanaRegis vent = new VentanaRegis();
+                dispose();
                 
                 
             }

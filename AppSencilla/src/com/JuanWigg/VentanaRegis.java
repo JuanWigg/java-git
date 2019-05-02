@@ -106,7 +106,15 @@ public class VentanaRegis extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            System.out.println("ACCION DETECTADA");
+            Object src = ae.getSource();
+            
+            if(src == botonCancel){
+                VentanaLog v1 = new VentanaLog();
+                dispose();
+                
+            }
+            
+            
         }
         
     }
