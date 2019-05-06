@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Main {
     
     public static void main(String [] args){
-        
+        //Init
         
         ArrayList<Usuario> users = new ArrayList<>();
         
