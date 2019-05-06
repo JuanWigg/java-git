@@ -4,6 +4,9 @@ package com.JuanWigg;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.*;
 
 
@@ -19,8 +22,11 @@ public class VentanaRegis extends JFrame {
     JTextField text_user;
     JTextField text_email;
     JPasswordField text_pass;
+    Date fechaNac;
+    private ArrayList<Usuario> usuarios;
     
-    public VentanaRegis(){
+    public VentanaRegis(ArrayList<Usuario> users){
+        usuarios = users;
         setVisible(true);
         setSize(600,800);
         setLocationRelativeTo(null);
@@ -49,7 +55,7 @@ public class VentanaRegis extends JFrame {
         label_fechaNac = new JLabel("Fecha de nacimiento:");
         
         label_user.setBounds(200,100,200,30);
-;       label_pass.setBounds(200,200,200,30);
+        label_pass.setBounds(200,200,200,30);
         label_email.setBounds(200,300,200,30);
         label_fechaNac.setBounds(200,400,200,30);
         
@@ -109,7 +115,21 @@ public class VentanaRegis extends JFrame {
             Object src = ae.getSource();
             
             if(src == botonCancel){
-                VentanaLog v1 = new VentanaLog();
+                VentanaLog v1 = new VentanaLog(usuarios);
+                dispose();
+                
+            }
+            else{
+                char getpass[]= text_pass.getPassword();
+                Calendar sd = fecha.getSelectedDate();
+                int anio = sd.get(Calendar.YEAR);
+                int mes = sd.get(Calendar.MONTH) + 1;
+                int dia = sd.get(Calendar.DAY_OF_MONTH);
+                Usuario nuevo = new Usuario(text_user.getText(),String.valueOf(getpass),text_email.getText(),dia,mes,anio);
+                usuarios.add(nuevo);
+                Main.guardarUsuarios(usuarios);
+                JOptionPane.showMessageDialog(null,"Registrado con exito", "Información:",JOptionPane.INFORMATION_MESSAGE);
+                VentanaLog v1 = new VentanaLog(usuarios);
                 dispose();
                 
             }

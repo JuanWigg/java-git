@@ -4,6 +4,7 @@ package com.JuanWigg;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 public class VentanaLog extends JFrame{
@@ -15,10 +16,11 @@ public class VentanaLog extends JFrame{
     JTextField text_user;
     JPasswordField text_pass;
     JLabel titulo;
+    private ArrayList<Usuario> usuarios;
     
     
-    
-    public VentanaLog(){
+    public VentanaLog(ArrayList<Usuario> users){
+        usuarios = users;
         setVisible(true);
         setLocationRelativeTo(null);
         setSize(600,800);
@@ -103,13 +105,19 @@ public class VentanaLog extends JFrame{
             
             
             if(src == botonLogin){
-                String user = "Juan123";
-                String pass = "Eskere123";
-                
+                char getpass[]= text_pass.getPassword();
                 String usertxt = text_user.getText();
-                String passtxt = text_pass.getText();
+                String passtxt = String.valueOf(getpass);
                 
-                if(user.equals(usertxt) && pass.equals(passtxt))
+                boolean encontrado = false;
+                for(Usuario u : usuarios){
+                    if(u.username.equals(usertxt) && u.password.equals(passtxt))
+                        encontrado = true;
+                    
+                }
+                
+                
+                if(encontrado)
                     JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso","Felicidades",JOptionPane.INFORMATION_MESSAGE);
                 else
                     JOptionPane.showMessageDialog(null,"Datos de inicio incorrectos","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -118,7 +126,7 @@ public class VentanaLog extends JFrame{
                 
             }
             else{
-                VentanaRegis vent = new VentanaRegis();
+                VentanaRegis vent = new VentanaRegis(usuarios);
                 dispose();
                 
                 
